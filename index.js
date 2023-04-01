@@ -33,10 +33,12 @@ app.post("/upload", upload.array("videos"), (req, res) => {
   // `req.files` contains an array of uploaded files
   const uploadedFiles = req.files;
   // Generate an array of links to the uploaded files
-  const fileLinks = uploadedFiles.map((file) => ({
-    filename: file.originalname,
-    link: `${req.protocol}://${req.get("host")}/${file.path}`,
-  }));
+  const fileLinks = uploadedFiles.map((file) => {
+    return {
+      filename: file.filename,
+      link: `${req.protocol}://${req.get("host")}/uploads/${file.filename}`,
+    };
+  });
 
   // Generate a CSV string from the file links
   csv.stringify(fileLinks, (err, data) => {
