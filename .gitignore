@@ -61,3 +61,9 @@ uploads
 file-links.csv
 csv
 csv/*
+config
+config/*
+test
+test/*
+.cache
+.cache/*
